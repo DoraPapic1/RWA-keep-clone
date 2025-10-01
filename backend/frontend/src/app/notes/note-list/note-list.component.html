@@ -1,0 +1,68 @@
+<div class="container list-container">
+  <h1 class="page-title">My Notes</h1>
+
+  <div class="controls">
+    <div class="control">
+      <label class="control-label">Search</label>
+      <input
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange($event)"
+        class="form-control search"
+        placeholder="Type to filter…"
+      />
+    </div>
+
+    <div class="control">
+      <label class="control-label">Filter by tag</label>
+      <select
+        [(ngModel)]="selectedTagId"
+        (change)="onTagChange($event.target.value)"
+        class="form-control tag-filter"
+      >
+        <option value="">All Tags</option>
+        <option *ngFor="let t of tags" [value]="t.id">{{ t.name }}</option>
+      </select>
+    </div>
+
+    <a routerLink="/notes/new" class="btn btn-primary new-note">＋ New Note</a>
+  </div>
+
+  <div class="notes-grid" *ngIf="notes?.length; else emptyState">
+    <article
+      *ngFor="let note of notes"
+      class="note-card"
+      [style.borderTop]="'4px solid ' + (note.color || '#8b5cf6')"
+    >
+      <header class="note-header">
+        <h3 class="note-title">{{ note.title }}</h3>
+      </header>
+
+      <p class="note-content">
+        {{ note.content }}
+      </p>
+
+      <div class="note-meta" *ngIf="note.tags?.length">
+        <span class="meta-label">Tags</span>
+        <div class="tags">
+          <span class="tag-chip" *ngFor="let t of note.tags">
+            <span class="tag-dot" [style.background]="t.color || '#64748b'"></span>
+            {{ t.name }}
+          </span>
+        </div>
+      </div>
+
+      <footer class="note-actions">
+        <a [routerLink]="['/notes', note.id]" class="link">View</a>
+        <span class="sep">•</span>
+        <a [routerLink]="['/notes', note.id, 'edit']" class="link">Edit</a>
+      </footer>
+    </article>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <p>No notes yet.</p>
+      <a routerLink="/notes/new" class="btn btn-primary">Create your first note</a>
+    </div>
+  </ng-template>
+</div>

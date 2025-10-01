@@ -1,0 +1,11 @@
+<div class="detail-container">
+  <h2>{{ note?.title }}</h2>
+  <div class="content">{{ note?.content }}</div>
+  <div class="badges">
+    <span class="badge" *ngFor="let t of note?.tags">{{ t.name }}</span>
+  </div>
+  <div class="actions">
+    <button (click)="router.navigate(['/notes', noteId, 'edit'])">Edit</button>
+    <button class="cancel-btn" (click)="router.navigate(['/notes'])">Back</button>
+  </div>
+</div>

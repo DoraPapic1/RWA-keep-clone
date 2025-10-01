@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">My Notes</a>
+    <div>
+      <a class="btn btn-primary" routerLink="/notes/new">＋ New Note</a>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<nav style="background: var(--color-panel); padding: var(--spacing); box-shadow: var(--shadow)">
+  <a routerLink="/" style="font-weight: bold; font-size: 1.2em">🗒 Keep Clone</a>
+</nav>
+<main>
+  <router-outlet></router-outlet>
+</main>

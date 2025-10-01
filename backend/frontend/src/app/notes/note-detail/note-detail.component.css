@@ -1,0 +1,18 @@
+.detail-container {
+  max-width: 600px;
+  margin: var(--spacing) auto;
+  background: var(--color-panel);
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.detail-container h2 {
+  margin-top: 0;
+}
+.detail-container .content {
+  margin: var(--spacing) 0;
+}
+.detail-container .actions {
+  display: flex;
+  gap: 0.5em;
+}

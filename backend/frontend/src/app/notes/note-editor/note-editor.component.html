@@ -1,0 +1,46 @@
+<!-- src/app/notes/note-editor/note-editor.component.html -->
+<div class="editor-container">
+  <div class="editor-card">
+    <h2>{{ noteId ? 'Edit' : 'New' }} Note</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input formControlName="title" class="form-control" placeholder="Title" />
+      </div>
+
+      <div class="form-group">
+        <label>Content</label>
+        <textarea formControlName="content" class="form-control" rows="6"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Color</label>
+        <input type="color" formControlName="color" class="form-control form-control-color" />
+      </div>
+
+      <div class="form-group">
+        <label>Tags</label>
+        <div class="tags-checkboxes">
+          <label *ngFor="let t of tags" class="tag-checkbox">
+            <input
+              type="checkbox"
+              [checked]="(form.controls['tagIds'].value || []).includes(t.id)"
+              (change)="onTagToggle(t.id, $any($event.target).checked)"
+            />
+            {{ t.name }}
+          </label>
+
+          <div *ngIf="tags.length === 0" class="muted">
+            No tags loaded.
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="loading">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

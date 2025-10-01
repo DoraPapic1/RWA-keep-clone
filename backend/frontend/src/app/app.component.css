@@ -1,0 +1,7 @@
+main {
+  padding: var(--spacing) 0;
+}
+nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
